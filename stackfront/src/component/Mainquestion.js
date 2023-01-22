@@ -3,6 +3,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import QuestionContext from './QuestionContext/QuestionContext'
 import { Link } from 'react-router-dom'
+// import { format } from 'date-fns'
 
 
 
@@ -26,6 +27,11 @@ function MainQuestion() {
     fetchQuestion(localStorage.getItem("que_id"))
     console.log(particular)
     console.log(particular[0].username)
+    // let o=particular[0].created_at
+    // let r=o.slice(0,10)
+    // console.log("value or r",r);
+    // const d=new Date(r)
+    // console.log("value iod d",d);
 
   }
 
@@ -50,7 +56,7 @@ function MainQuestion() {
             date of upload{" : "}
             <span>
               {" "}
-              <strong> {particular&&particular[0].created_at}</strong>
+              <strong> {particular&&(particular[0].created_at).slice(0,10)}</strong>
             </span>
           </p>
           <p className="mb-0">
