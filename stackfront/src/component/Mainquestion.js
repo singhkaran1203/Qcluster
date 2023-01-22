@@ -112,7 +112,7 @@ function MainQuestion() {
         <hr />
         <h1>Add Answers</h1>
         <ReactQuill theme="snow" value={answe} onChange={setAnswe}></ReactQuill>
-        <button className="btn btn-primary btn-lg my-2" onClick={handleAns}>Add Qusetion</button>
+        <button className="btn btn-primary btn-lg my-2" onClick={handleAns}>Add Answer</button>
       </div>
     </div>
     </div>
