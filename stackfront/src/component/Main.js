@@ -23,7 +23,7 @@ export default function Main() {
         </div>
         <div className="filter">
         <div className="desc">
-            <p>No of question</p>
+            <p>No of question : <strong>{question.length}</strong></p>
         </div>
 
             <div className="tabs">

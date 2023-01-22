@@ -57,7 +57,7 @@ const onChange=(e)=>{
               {/* <button className='Resister my-5'>Resister</button> */}
             </div>
             <div className="right2">
-             <h1  className='text-center ll2'>Resister</h1>
+             <h1  className='text-center ll2'>Register</h1>
              <form className='formlogin2 my-4' onSubmit={handleSubmit}>
                 <input className='inputlogin2 ' type="text" placeholder='Username' name="name" onChange={onChange} value={credentials.name}/>
                 <input className='inputlogin2' type="email" placeholder='email' name="email" onChange={onChange} value={credentials.email}/ >
