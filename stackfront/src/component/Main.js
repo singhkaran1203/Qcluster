@@ -66,12 +66,7 @@ export default function Main() {
             <div className="questions">
                 <Question detail={question}/>
            </div>
-            
-
         ))}
-                
-                    
-               
     </div>
 </div>
   )
