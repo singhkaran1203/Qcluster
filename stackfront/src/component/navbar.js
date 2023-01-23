@@ -1,14 +1,24 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import {  useNavigate } from 'react-router'
 import question from './question.png'
+import QuestionContext from './QuestionContext/QuestionContext'
 
 export default function Navbar() {
   const navigate=useNavigate()
-
+  const context=useContext(QuestionContext)
   const handleremove=()=>{
     localStorage.removeItem('user_name')
     localStorage.removeItem('user_id2')
     navigate("/")
+  }
+ 
+  const {utag}=context
+
+
+  const handleonclick =(e)=>{
+    e.preventDefault()
+    console.log(utag);
+
   }
 
   return (
@@ -33,7 +43,7 @@ export default function Navbar() {
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
           <a className="dropdown-item d-flex justify-content-around" href="/">User <i className="fa-solid fa-user"></i></a>
-          <a className="dropdown-item d-flex justify-content-around" href="/">Tags<i className="fa-solid fa-tags"></i></a>
+          <a className="dropdown-item d-flex justify-content-around" href="/" onClick={handleonclick}> Tags<i className="fa-solid fa-tags"></i></a>
           <a className="dropdown-item d-flex justify-content-around" href="/">Question<i className="fa-duotone fa-question"></i></a>
 
           <div className="dropdown-divider"></div>

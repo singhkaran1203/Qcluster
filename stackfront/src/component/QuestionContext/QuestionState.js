@@ -48,7 +48,7 @@ const QuestionState = (props) => {
                 body: JSON.stringify({username, user,title,body,tags})
 
             });
-            console.log("addd note is running");
+            console.log("add note is running");
             const newQuestion = { username,title,body,tags,user };
             setQuestion(question.concat(newQuestion));
         }
@@ -66,9 +66,9 @@ const QuestionState = (props) => {
     // get all question
 
     const fetchallQuestion=async ()=>{
-        console.log("dsfnodsv");
+        // console.log("dsfnodsv");
         try {
-            console.log("dsfnodsv");
+            // console.log("dsfnodsv");
 
             const response = await fetch(`${host}/api/question`, {
                 method: 'GET',
@@ -83,15 +83,10 @@ const QuestionState = (props) => {
 
             });
 
-
-           
-
-
-
-
             const json = await response.json();
             setQuestion(json);
             console.log("feych note is runnign");
+            // console.log(json);
         }
         catch (err) {
             console.log(err);
@@ -193,7 +188,13 @@ const QuestionState = (props) => {
 
 
 
-
+    // const utag=new Set();
+    // question.map((ques)=>{
+    //     ques.tags.map((tag)=>{
+    //         utag.add(tag);
+    //     })
+    // })
+   
 
    
 
