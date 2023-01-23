@@ -106,7 +106,7 @@ Router.put('/:id',async(req,res)=>{
 Router.get('/user',async(req,res)=>{
     try {
       const user=await User.find({isactive:true});
-      res.send(user)
+      res.json({user});
     } catch (error) {
         console.log(error)
         
