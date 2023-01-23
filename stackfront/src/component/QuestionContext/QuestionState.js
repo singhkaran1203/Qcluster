@@ -11,17 +11,9 @@ const QuestionState = (props) => {
     const [question, setQuestion] = useState([]);
     const [comment, setComment] = useState([]);
     const [answer, setAnswer] = useState([]);
-
     const [que_id, setQue] = useState("")
     const [particular, setParticular] = useState("")
     const setting = (user) => {
-
-    const [que_id,setQue]=useState("")
-    const [particular,setParticular]=useState("")
-    console.log(1)
-    console.log(1)
-    const setting=(user)=>{
-
         setUser(user)
     }
 
@@ -35,9 +27,6 @@ const QuestionState = (props) => {
     // samjh aa gya ki hum fetch function me endpoint ke sath sath use headers aur body bhi de sktw hai
     // let me show you this
     // create a fucntion fetchallnotes
-
-
-
     // question
 
     // add a question
@@ -56,13 +45,8 @@ const QuestionState = (props) => {
                 body: JSON.stringify({ username, user, title, body, tags })
 
             });
-
             console.log("addd note is running");
             const newQuestion = { username, title, body, tags, user };
-
-            console.log("add note is running");
-            const newQuestion = { username,title,body,tags,user };
-
             setQuestion(question.concat(newQuestion));
         }
         catch (err) {
@@ -78,15 +62,10 @@ const QuestionState = (props) => {
 
     // get all question
 
-
     const fetchallQuestion = async () => {
         console.log("dsfnodsv");
-
-    const fetchallQuestion=async ()=>{
-        // console.log("dsfnodsv");
-
         try {
-            // console.log("dsfnodsv");
+            console.log("dsfnodsv");
 
             const response = await fetch(`${host}/api/question`, {
                 method: 'GET',
@@ -102,10 +81,13 @@ const QuestionState = (props) => {
             });
 
 
+
+
+
+
             const json = await response.json();
             setQuestion(json);
             console.log("feych note is runnign");
-            // console.log(json);
         }
         catch (err) {
             console.log(err);
@@ -207,13 +189,7 @@ const QuestionState = (props) => {
 
 
 
-    // const utag=new Set();
-    // question.map((ques)=>{
-    //     ques.tags.map((tag)=>{
-    //         utag.add(tag);
-    //     })
-    // })
-   
+
 
 
 
