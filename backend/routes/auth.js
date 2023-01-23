@@ -24,7 +24,7 @@ async (req, res) => {
     var secPas = bcrypt.hashSync(req.body.password, salt);
     
     let p=await User.findOne({email:req.body.email});
-    console.log(`value od p  is ${p}  value of email ${req.body.email}`);
+    // console.log(`value od p  is ${p}  value of email ${req.body.email}`);
     if(p){
         let msg=`User with ${req.body.email} already exist`;
         res.send({success,msg});
@@ -39,7 +39,7 @@ async (req, res) => {
     success=true;
 
 
-    
+     
     // now creatig auth token
     //  here data is second part of jwt that is payload
    
@@ -48,7 +48,7 @@ async (req, res) => {
 
 
 
-    console.log(req.body);
+    // console.log(req.body);
     // res.send({secPas});
 }
 }
@@ -82,7 +82,7 @@ async (req, res) => {
        
         success=true
         req.user=exist
-        console.log(req.user)
+        // console.log(req.user)
        
         res.status(200).json({exist,success});
     }
