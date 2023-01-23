@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useRef } from 'react'
 import { useNavigate } from 'react-router'
 import question from './question.png'
 import QuestionContext from './QuestionContext/QuestionContext'
@@ -6,8 +6,9 @@ import QuestionContext from './QuestionContext/QuestionContext'
 
 export default function Navbar() {
   const context = useContext(QuestionContext)
-  const { utag } = context
+  const { utag,fetchQuestionWithTag } = context
 
+  const myRef=useRef()
 
   const navigate = useNavigate()
 
@@ -28,7 +29,14 @@ export default function Navbar() {
     num++;
     
   }
-  console.log(arr)
+
+
+  const handleTagClick=(e)=>{
+     
+    fetchQuestionWithTag(e.target.innerText)
+    myRef.current.click()
+  }
+  // console.log(arr)
   // }
 
   return (
@@ -39,7 +47,7 @@ export default function Navbar() {
      
 
 
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -51,13 +59,13 @@ export default function Navbar() {
             <div class="modal-body">
               {
                 arr.map(k =>(
-                  <span className='badge'>{k}</span>
+                  <span className='badge'onClick={handleTagClick} style={{cursor:'pointer'}} >{k}</span>
                 ))
               }
           
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" ref={myRef}>Close</button>
               {/* <button type="button" class="btn btn-primary">Save changes</button> */}
             </div>
           </div>
@@ -76,28 +84,17 @@ export default function Navbar() {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto text-center">
-            <li className="nav-item active">
-              <a className="nav-link" href="/">Home </a>
-            </li>
+            
 
-            <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a>
-              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item d-flex justify-content-around" href="/">User <i className="fa-solid fa-user"></i></a>
-                <a className="dropdown-item d-flex justify-content-around" data-toggle="modal" data-target="#exampleModal" href="/">Tags<i className="fa-solid fa-tags"></i></a>
-                <a className="dropdown-item d-flex justify-content-around" href="/">Question<i className="fa-duotone fa-question"></i></a>
-
-                <div className="dropdown-divider"></div>
-                <a className="dropdown-item" href="/">Something else here</a>
-              </div>
-            </li>
-
-            <input className="form-control mr-sm-2 mx-3" type="search" placeholder="Search" aria-label="Search" />
-            <button className="btn btn-outline-success my-2 my-sm-2" type="submit">Search</button>
-            <button className="btn btn-outline-danger my-2 mx-3 my-sm-0" onClick={handleremove} >Logout</button>
-
+            
+            {/* <FontAwesomeIcon icon="fa-duotone fa-user-secret" /> */}
+           
+            <input className="form-control mr-sm-2 mx-3 butt search" type="search" placeholder="Search" aria-label="Search" />
+            <button className="btn btn-outline-success my-2 my-sm-0 butt" type="submit">Search</button>
+            <button className="btn btn-outline-danger my-2 mx-3 my-sm-0  butt" onClick={handleremove} >Logout</button>
+            <i style={{fontSize:'40px'}} className="fa-sharp fa-solid fa-user-secret"></i>
+           <h6 className='username' >{localStorage.getItem("user_name")}</h6>
+          
           </ul>
 
         </div>

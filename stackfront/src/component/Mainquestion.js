@@ -13,7 +13,7 @@ function MainQuestion() {
   const [comm,setComm]=useState()
   const [answe,setAnswe]=useState()
 
-  console.log(localStorage.getItem("que_id"))
+  // console.log(localStorage.getItem("que_id"))
   useEffect(() => {
     fetchQuestion(localStorage.getItem("que_id"))
   
@@ -22,8 +22,8 @@ function MainQuestion() {
   const handleClick=()=>{
     addComment(localStorage.getItem("user_id2"),particular[0]._id,comm,localStorage.getItem("user_name"))
     fetchQuestion(localStorage.getItem("que_id"))
-    console.log(particular)
-    console.log(particular[0].username)
+    // console.log(particular)
+    // console.log(particular[0].username)
     // let o=particular[0].created_at
     // let r=o.slice(0,10)
     // console.log("value or r",r);

@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom'
 
 export default function Question(props) {
     let x=props.detail.tags
-    console.log("this is ",x)
+    // console.log("this is ",x)
     // const context=useContext(QuestionContext)
     // const {que_id,setQue}=context
     const handleClick=()=>{
-        console.log(props.detail._id)
+        // console.log(props.detail._id)
         // setQue(props.detail._id)
         // console.log(que_id)
         localStorage.setItem("que_id",props.detail._id)
-        console.log(localStorage.getItem("que_id"))
+        // console.log(localStorage.getItem("que_id"))
 
 
     }
@@ -37,9 +37,7 @@ export default function Question(props) {
                     <span className='badge'>{k}</span>
 
                 ))}
-                
-                
-                
+
 
             </div>
 
