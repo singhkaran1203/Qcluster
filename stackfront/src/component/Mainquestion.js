@@ -18,10 +18,7 @@ function MainQuestion() {
     fetchQuestion(localStorage.getItem("que_id"))
   
   }, [])
-  // fetchQuestion(localStorage.getItem("que_id"))
-  // console.log("kya hai",particular)
   
-  // console.log(particular[0].created_at.getDate())
   const handleClick=()=>{
     addComment(localStorage.getItem("user_id2"),particular[0]._id,comm,localStorage.getItem("user_name"))
     fetchQuestion(localStorage.getItem("que_id"))

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import QuestionContext from './QuestionContext/QuestionContext'
+import axios from "axios";
 
 
 export default function Login() {
@@ -13,12 +14,28 @@ export default function Login() {
   const[credentials,setCredentials]=useState({email:"",password:""})
 
 
+  const activeuser=async(id)=>{
+
+    let headersList = {
+     "Accept": "*/*",
+    }
+    
+    let reqOptions = {
+      url: `http://localhost:80/api/auth/${id}`,
+      method: "PUT",
+      headers: headersList,
+    }
+    
+    let response = await axios.request(reqOptions);
+   
+    
+}
+
+
   const handleSubmit=async (e)=>{
     e.preventDefault(); 
     
     console.log("ruko dekhteh haiemail password sahi ai")
-    // jaise hi submit pe click ho 
-    // fetch se pata karo sahi hai login wale endpoint se
     const response = await fetch('http://localhost:80/api/auth/login', {
         method: 'POST',
         headers: {
@@ -36,33 +53,21 @@ export default function Login() {
     const p=json.exist._id
 
     const name=json.exist.name;
-    // console.log();
-    // setting(json.exist._id)
-   
-    //   console.log("this is")
-      // setting(json.exist._id)
+    
+console.log(p)
 
-
-    // console.log(user_id);
     localStorage.setItem("user_id2",p)
-    // localStorage.setItem("myusername":)
+ 
     localStorage.setItem("user_name",name)
     setExist(localStorage.getItem("user_id2"));
-    // console.log(localStorage.getItem("user_id2"));
-    // console.log(localStorage.getItem("user_name"));
-
-
-
-    
+  
     if(json.success){
+      await activeuser(p);
       navigate("/main")
     }
+    console.log(json.exist);
 
-  
     
-    
-    
-
 }
   
     

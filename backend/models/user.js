@@ -14,6 +14,10 @@ const UserSchema=new Schema({
             },
     date:{type:String,
         default:Date.now
+    },
+    isactive:{
+        type:Boolean,
+        default:false
     }
 
 });
