@@ -7,6 +7,7 @@ export default function Login() {
   const context=useContext(QuestionContext)
   const navigate=useNavigate()
   // const {user_id,setUser,setting}=context
+  console.log(2)
   const [exi,setExist]=useState("")
 
   const[credentials,setCredentials]=useState({email:"",password:""})

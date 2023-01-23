@@ -6,21 +6,27 @@ import QuestionContext from "./QuestionContext";
 
 const QuestionState = (props) => {
     const host = 'http://localhost:80';
-    const [user_id,setUser]=useState("");
-    
+    const [user_id, setUser] = useState("");
+
     const [question, setQuestion] = useState([]);
     const [comment, setComment] = useState([]);
     const [answer, setAnswer] = useState([]);
+
+    const [que_id, setQue] = useState("")
+    const [particular, setParticular] = useState("")
+    const setting = (user) => {
+
     const [que_id,setQue]=useState("")
     const [particular,setParticular]=useState("")
     console.log(1)
     console.log(1)
     const setting=(user)=>{
+
         setUser(user)
     }
-    
 
-    
+
+
 
 
     // now we have to do api fetch to connnect our functionality wiht oiur database
@@ -36,7 +42,7 @@ const QuestionState = (props) => {
 
     // add a question
 
-    const addQuestion=async (username,user,title,body,tags)=>{
+    const addQuestion = async (username, user, title, body, tags) => {
         try {
             console.log("dsfnodsv");
 
@@ -47,11 +53,16 @@ const QuestionState = (props) => {
                     'Content-Type': 'application/json',
 
                 },
-                body: JSON.stringify({username, user,title,body,tags})
+                body: JSON.stringify({ username, user, title, body, tags })
 
             });
+
+            console.log("addd note is running");
+            const newQuestion = { username, title, body, tags, user };
+
             console.log("add note is running");
             const newQuestion = { username,title,body,tags,user };
+
             setQuestion(question.concat(newQuestion));
         }
         catch (err) {
@@ -67,8 +78,13 @@ const QuestionState = (props) => {
 
     // get all question
 
+
+    const fetchallQuestion = async () => {
+        console.log("dsfnodsv");
+
     const fetchallQuestion=async ()=>{
         // console.log("dsfnodsv");
+
         try {
             // console.log("dsfnodsv");
 
@@ -79,11 +95,12 @@ const QuestionState = (props) => {
 
                     'Content-Type': 'application/json',
 
-                    
+
 
                 },
 
             });
+
 
             const json = await response.json();
             setQuestion(json);
@@ -112,10 +129,10 @@ const QuestionState = (props) => {
     // getting question for particular id
 
 
-    const fetchQuestion=async (id)=>{
+    const fetchQuestion = async (id) => {
 
         try {
-           
+
 
             const response = await fetch(`${host}/api/question/${id}`, {
                 method: 'GET',
@@ -124,7 +141,7 @@ const QuestionState = (props) => {
 
                     'Content-Type': 'application/json',
 
-                    
+
 
                 },
 
@@ -132,7 +149,7 @@ const QuestionState = (props) => {
 
 
             // to do something
-           
+
 
             const json = await response.json();
             // setQuestion(json);
@@ -158,10 +175,10 @@ const QuestionState = (props) => {
 
     // comment
 
-     // post comment
+    // post comment
 
 
-    const addComment=async (user,question_id,comment,username)=>{
+    const addComment = async (user, question_id, comment, username) => {
         try {
             console.log("dsfnodsv");
 
@@ -172,11 +189,11 @@ const QuestionState = (props) => {
                     'Content-Type': 'application/json',
 
                 },
-                body: JSON.stringify({user,question_id,comment,username})
+                body: JSON.stringify({ user, question_id, comment, username })
 
             });
             console.log("addd note is running");
-            const newComment = {user,question_id,comment,username};
+            const newComment = { user, question_id, comment, username };
             setComment(comment.concat(newComment))
         }
         catch (err) {
@@ -198,7 +215,7 @@ const QuestionState = (props) => {
     // })
    
 
-   
+
 
 
 
@@ -213,8 +230,8 @@ const QuestionState = (props) => {
     // answer
 
     // post answer
-    
-    const addAnswer=async (user,question_id,answer,username)=>{
+
+    const addAnswer = async (user, question_id, answer, username) => {
         try {
             console.log("dsfnodsv");
 
@@ -225,11 +242,11 @@ const QuestionState = (props) => {
                     'Content-Type': 'application/json',
 
                 },
-                body: JSON.stringify({user,question_id,answer,username})
+                body: JSON.stringify({ user, question_id, answer, username })
 
             });
             console.log("addd note is running");
-            const newAnswer = {user,question_id,comment,username};
+            const newAnswer = { user, question_id, comment, username };
             setAnswer(answer.concat(newAnswer));
         }
         catch (err) {
@@ -241,58 +258,21 @@ const QuestionState = (props) => {
 
     }
 
+    let utag = new Set()
+
+    question.map(k => (
+        k.tags.map(K => (
+            utag.add(K)
+        ))
+    ))
 
 
 
 
-
-
-    // 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-    
 
 
     return (
-        <QuestionContext.Provider value={{ question, setQuestion, comment, answer,addAnswer,addComment,fetchQuestion,fetchallQuestion,addQuestion,user_id,setUser,setting,que_id,setQue,particular}}>
+        <QuestionContext.Provider value={{ question, setQuestion, comment, answer, addAnswer, addComment, fetchQuestion, fetchallQuestion, addQuestion, user_id, utag, setUser, setting, que_id, setQue, particular }}>
             {props.children}
 
 

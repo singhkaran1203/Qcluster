@@ -24,10 +24,10 @@ export default function Question(props) {
         <div className="question ">
            
 
-            <div className="qright">
+            <div className="qright container-fluid">
                 <Link className='hello' to='/mainquestion' onClick={handleClick}>{props.detail.title}</Link>
                 <div className="answer">
-                    <p dangerouslySetInnerHTML={{__html:props.detail.body}}></p>
+                    <p className='paraghaph' dangerouslySetInnerHTML={{__html:props.detail.body}}></p>
                 </div>
                 
 
