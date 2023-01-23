@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect,useState } from 'react'
 import Question from './Question'
 import { Link } from 'react-router-dom'
 import QuestionContext from './QuestionContext/QuestionContext'
@@ -6,14 +6,34 @@ import QuestionContext from './QuestionContext/QuestionContext'
 export default function Main() {
     const context=useContext(QuestionContext)
     const {question,fetchallQuestion}=context
+    const [newest, setnewest] = useState(false)
 
 
 
     useEffect(()=>{
         fetchallQuestion()
-
+        
     },[])
+
+    const handleonclick =(e)=>{
+        e.preventDefault();
+        question.reverse();
+        setnewest(!newest);
+    }
     console.log(question);
+
+
+
+    // const utag=new Set();
+    // question.map((ques)=>{
+    //     ques.tags.map((tag)=>{
+    //         utag.add(tag);
+    //     })
+    // })
+    // console.log(utag);
+
+
+
   return (
 <div className="main">
     <div className="container">
@@ -28,7 +48,7 @@ export default function Main() {
 
             <div className="tabs">
                 <div className="tab">
-                    <a href=""className='lll'>Newest</a>
+                    <a onClick={handleonclick} className='lll'>{newest?"Oldest":"Newest"}</a>
                 </div>
                 <div className="tab">
                     <a href=""className='lll'>Active</a>
@@ -44,7 +64,7 @@ export default function Main() {
         </div>
         {question.map(question=>(
             <div className="questions">
-            <Question detail={question}/>
+                <Question detail={question}/>
            </div>
             
 
