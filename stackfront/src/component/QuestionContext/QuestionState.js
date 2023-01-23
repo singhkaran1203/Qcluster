@@ -13,7 +13,11 @@ const QuestionState = (props) => {
     const [answer, setAnswer] = useState([]);
     const [que_id, setQue] = useState("")
     const [particular, setParticular] = useState("")
+
+    const [questionToPass,setPass]=useState([])
+
     console.log("try");
+
     const setting = (user) => {
         setUser(user)
     }
@@ -88,6 +92,9 @@ const QuestionState = (props) => {
 
             const json = await response.json();
             setQuestion(json);
+            console.log("question  ",question);
+            setPass(json);
+            console.log("questionToPAss  ",questionToPass);
             console.log("feych note is runnign");
         }
         catch (err) {
@@ -143,6 +150,32 @@ const QuestionState = (props) => {
             console.log(err);
         }
     }
+    
+
+
+    const fetchQuestionWithTag=(tag)=>{
+        // now i have to change questionToPass aacording to tag
+        let newQuestion=[]
+        newQuestion=question.filter((ques)=>{
+            // console.log(ques.tags)
+            return (ques.tags.includes(tag))
+        })
+        // console.log("new question",newQuestion)
+        setPass(newQuestion)
+
+    }
+    const fetchQuestionAll=()=>{
+        // now i have to change questionToPass aacording to tag
+        // let newQuestion=[]
+        // newQuestion=question.filter((ques)=>{
+        //     // console.log(ques.tags)
+        //     return (ques.tags.includes(tag))
+        // })
+        // console.log("new question",newQuestion)
+        setPass(question)
+
+    }
+
 
 
 
@@ -249,7 +282,7 @@ const QuestionState = (props) => {
 
 
     return (
-        <QuestionContext.Provider value={{ question, setQuestion, comment, answer, addAnswer, addComment, fetchQuestion, fetchallQuestion, addQuestion, user_id, utag, setUser, setting, que_id, setQue, particular }}>
+        <QuestionContext.Provider value={{ question, setQuestion, comment, answer, addAnswer, addComment, fetchQuestion, fetchallQuestion, addQuestion, user_id, utag, setUser, setting, que_id, setQue, particular,questionToPass,fetchQuestionWithTag,fetchQuestionAll }}>
             {props.children}
 
 
