@@ -39,7 +39,7 @@ async (req, res) => {
     success=true;
 
 
-    
+     
     // now creatig auth token
     //  here data is second part of jwt that is payload
    
