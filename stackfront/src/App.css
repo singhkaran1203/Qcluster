@@ -513,3 +513,44 @@ a{
   padding: 7px;
   margin: 5px 0 5px 0;
 }
+
+@media(max-width: 580px){
+.navbar-nav{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+}
+
+
+@media(max-width: 440px){
+
+.qright{
+  /* display: flex; */
+  flex-wrap: wrap;
+
+}
+.answer{
+  /* display: flex; */
+  flex-wrap: wrap;
+}
+.hello{
+  font-size: 15px;
+}
+.paraghaph{
+  font-size: 10px;
+}
+}
+@media(max-width: 328px){
+
+  .hello{
+    font-size: 15px;
+  }
+  .paraghaph{
+    font-size: 7px;
+  }
+  .navbar-brand{
+    font-size: 20px;
+  }
+}
