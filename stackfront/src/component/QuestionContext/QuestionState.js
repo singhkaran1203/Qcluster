@@ -13,6 +13,7 @@ const QuestionState = (props) => {
     const [answer, setAnswer] = useState([]);
     const [que_id,setQue]=useState("")
     const [particular,setParticular]=useState("")
+    console.log(1)
     const setting=(user)=>{
         setUser(user)
     }
