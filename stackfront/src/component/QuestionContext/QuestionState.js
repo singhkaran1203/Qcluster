@@ -14,6 +14,7 @@ const QuestionState = (props) => {
     const [que_id,setQue]=useState("")
     const [particular,setParticular]=useState("")
     console.log(1)
+    console.log(1)
     const setting=(user)=>{
         setUser(user)
     }
