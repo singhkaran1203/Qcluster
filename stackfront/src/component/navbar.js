@@ -2,6 +2,7 @@ import React, { useContext, useRef } from 'react'
 import { useNavigate } from 'react-router'
 import question from './question.png'
 import QuestionContext from './QuestionContext/QuestionContext'
+import axios from "axios";
 
 
 export default function Navbar() {
@@ -12,9 +13,28 @@ export default function Navbar() {
 
   const navigate = useNavigate()
 
+  const user_inactive=async (id)=>{
+
+let headersList = {
+ "Accept": "*/*",
+
+}
+
+let reqOptions = {
+  url: `http://localhost:80/api/auth/logout/${id}`,
+  method: "PUT",
+  headers: headersList,
+}
+
+let response = await axios.request(reqOptions);
+console.log(response.data);
+  }
   const handleremove = () => {
     localStorage.removeItem('user_name')
+    const p=localStorage.getItem('user_id2');
     localStorage.removeItem('user_id2')
+   
+    user_inactive(p);
     navigate("/")
   }
 

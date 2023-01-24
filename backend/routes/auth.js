@@ -72,8 +72,7 @@ async (req, res) => {
          
         const exist=await User.findOne({email});
         if(!exist){
-            
-            return res.status(401).send({success});
+            return res.status(401).json({success});
         }
         const r=await bcrypt.compare(req.body.password, exist.password);
         if(!r){
@@ -92,6 +91,37 @@ async (req, res) => {
     }
 });
 
+Router.put('/:id',async(req,res)=>{
+    try {
+        const user_id=req.params.id;
+        const USER=await User.findByIdAndUpdate(user_id,{isactive:true});
+        res.send(USER);
+        
+    } catch (error) {
+        res.status(500).json({error})
+    }
+})
+
+
+Router.get('/user',async(req,res)=>{
+    try {
+      const user=await User.find({isactive:true});
+      res.json({user});
+    } catch (error) {
+        console.log(error)
+        
+    }
+})
+Router.put('/logout/:id',async(req,res)=>{
+    try {
+        const user_id=req.params.id;
+        const USER=await User.findByIdAndUpdate(user_id,{isactive:false});
+        res.send(USER);
+        
+    } catch (error) {
+        res.status(500).json({error})
+    }
+})
 
 // now we have to give authorization on the basic of auth key
 // if auth key provided by broweer matches with auth key generated then acesss given 
@@ -124,10 +154,5 @@ async (req, res) => {
 
 
 
-Router.get('/auth',(req,res)=>{
-    res.send("heloooooo");
-});
-Router.get('/',(req,res)=>{
-    res.send("THis is");
-});
+
 module.exports=Router
