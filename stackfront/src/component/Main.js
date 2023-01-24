@@ -5,23 +5,42 @@ import QuestionContext from './QuestionContext/QuestionContext'
 
 export default function Main() {
     const context = useContext(QuestionContext)
-    const { question, fetchallQuestion,questionToPass,fetchQuestionAll } = context
+    const { question, fetchallQuestion,questionToPass,fetchQuestionAll,User ,fetchUser} = context
     const [newest, setnewest] = useState(false)
+    // const [user_arr,setuser_arr]=useState([]);
+//     console.log("this user", User)
 
-
-
+// console.log("ddj",User)
+//  let User_arr=[]
     useEffect(() => {
         fetchallQuestion()
     }, [])
 
-    const handleonclick = (e) => {
+    const handleonclick = async(e) => {
         e.preventDefault();
         question.reverse();
+       
+       
         setnewest(!newest);
     }
     // console.log(question);
    const handleQuestion=()=>{
     fetchQuestionAll()
+
+   }
+
+   const handleActive=(e)=>{
+    // e.preventDefault()
+    
+    fetchUser()
+    // for (let i = 0; i < User.user.length; i++) {
+    //   User_arr[i]= User.user[i].name
+        
+    // }
+//    console.log( User.user.length)
+  
+ 
+
 
    }
 
@@ -38,6 +57,39 @@ export default function Main() {
 
     return (
         <div className="main">
+         
+{/* <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button> */}
+
+
+<div class="modal fade" id="exampleModale" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Active User</h5>
+        {/* <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> */}
+      </div>
+      <div class="modal-body">
+            {
+             
+               User && User.user.map(ele=>(
+                    <span className='badge'>{ele.name}</span>
+                ))
+
+
+             }
+              
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        {/* <button type="button" class="btn btn-primary">Save changes</button> */}
+      </div>
+    </div>
+  </div>
+</div>
             <div className="container">
                 <div className="top">
                     <h2>All Question</h2>
@@ -53,11 +105,11 @@ export default function Main() {
                             <a onClick={handleonclick} className='lll'>{newest ? "Oldest" : "Newest"}</a>
                         </div>
                         <div className="tab">
-                            <a href="" className='lll'>Active</a>
+                            <a href="" className='lll' onClick={handleActive} data-toggle="modal" data-target="#exampleModale" >Active</a>
                         </div>
-                        <div className="tab">
+                        {/* <div className="tab">
                             <a href="" className='lll'>More</a>
-                        </div>
+                        </div> */}
                         <div className="filter-icon">
                             <div className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-sharp fa-solid fa-filter"></i>Filter</a>

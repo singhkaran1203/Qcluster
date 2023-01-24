@@ -1,6 +1,7 @@
 import { useState } from "react";
 import React from "react";
 import QuestionContext from "./QuestionContext";
+// import user from "../../../../backend/models/user";
 
 
 
@@ -14,10 +15,11 @@ const QuestionState = (props) => {
     const [answer, setAnswer] = useState([]);
     const [que_id, setQue] = useState("")
     const [particular, setParticular] = useState("")
+    const [User,set_User]=useState("")
 
     const [questionToPass,setPass]=useState([])
 
-    console.log("try");
+    //  console.log("try");
 
     const setting = (user) => {
         setUser(user)
@@ -41,7 +43,7 @@ const QuestionState = (props) => {
 
     const addQuestion = async (username, user, title, body, tags) => {
         try {
-            console.log("dsfnodsv");
+            // console.log("dsfnodsv");
 
             const response = await fetch(`${host}/api/question`, {
                 method: 'POST',
@@ -53,7 +55,7 @@ const QuestionState = (props) => {
                 body: JSON.stringify({ username, user, title, body, tags })
 
             });
-            console.log("addd note is running");
+            // console.log("addd note is running");
             const newQuestion = { username, title, body, tags, user };
             setQuestion(question.concat(newQuestion));
         }
@@ -67,9 +69,9 @@ const QuestionState = (props) => {
     // get all question
 
     const fetchallQuestion = async () => {
-        console.log("dsfnodsv");
+        // console.log("dsfnodsv");
         try {
-            console.log("dsfnodsv");
+            // console.log("dsfnodsv");
 
             const response = await fetch(`${host}/api/question`, {
                 method: 'GET',
@@ -91,26 +93,15 @@ const QuestionState = (props) => {
 
             const json = await response.json();
             setQuestion(json);
-            console.log("question  ",question);
+            // console.log("question  ",question);
             setPass(json);
-            console.log("questionToPAss  ",questionToPass);
-            console.log("feych note is runnign");
+            // console.log("questionToPAss  ",questionToPass);
+            // console.log("feych note is runnign");
         }
         catch (err) {
             console.log(err);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -126,12 +117,7 @@ const QuestionState = (props) => {
             const response = await fetch(`${host}/api/question/${id}`, {
                 method: 'GET',
                 headers: {
-
-
                     'Content-Type': 'application/json',
-
-
-
                 },
 
             });
@@ -141,8 +127,7 @@ const QuestionState = (props) => {
 
 
             const json = await response.json();
-            // setQuestion(json);
-            setParticular(json);
+                   setParticular(json);
             // console.log("feych note is runnign");
         }
         catch (err) {
@@ -177,25 +162,12 @@ const QuestionState = (props) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    // comment
-
     // post comment
 
 
     const addComment = async (user, question_id, comment, username) => {
         try {
-            console.log("dsfnodsv");
+            // console.log("dsfnodsv");
 
             const response = await fetch(`${host}/api/comment/${question_id}`, {
                 method: 'POST',
@@ -207,7 +179,7 @@ const QuestionState = (props) => {
                 body: JSON.stringify({ user, question_id, comment, username })
 
             });
-            console.log("addd note is running");
+            // console.log("addd note is running");
             const newComment = { user, question_id, comment, username };
             setComment(comment.concat(newComment))
         }
@@ -223,26 +195,11 @@ const QuestionState = (props) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // answer
-
     // post answer
 
     const addAnswer = async (user, question_id, answer, username) => {
         try {
-            console.log("dsfnodsv");
+            // console.log("dsfnodsv");
 
             const response = await fetch(`${host}/api/answer`, {
                 method: 'POST',
@@ -254,7 +211,9 @@ const QuestionState = (props) => {
                 body: JSON.stringify({ user, question_id, answer, username })
 
             });
-            console.log("addd note is running");
+           
+           
+            // console.log("addd note is running");
             const newAnswer = { user, question_id, comment, username };
             setAnswer(answer.concat(newAnswer));
         }
@@ -274,6 +233,34 @@ const QuestionState = (props) => {
             utag.add(K)
         ))
     ))
+   
+    const fetchUser = async () => {
+
+        try {
+
+
+            const response = await fetch(`${host}/api/auth/user`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+              },
+
+            });
+
+
+
+            const json = await response.json();
+            set_User(json)
+            
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
+
+  
+
 
 
 
@@ -281,7 +268,7 @@ const QuestionState = (props) => {
 
 
     return (
-        <QuestionContext.Provider value={{ question, setQuestion, comment, answer, addAnswer, addComment, fetchQuestion, fetchallQuestion, addQuestion, user_id, utag, setUser, setting, que_id, setQue, particular,questionToPass,fetchQuestionWithTag,fetchQuestionAll }}>
+        <QuestionContext.Provider value={{ question, setQuestion, comment, answer, addAnswer, addComment, fetchQuestion, fetchallQuestion, addQuestion, user_id, utag, setUser, setting, que_id, setQue, particular,questionToPass,fetchQuestionWithTag,fetchQuestionAll , fetchUser,User}}>
             {props.children}
 
 
