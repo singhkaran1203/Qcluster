@@ -4,6 +4,7 @@ import QuestionContext from "./QuestionContext";
 
 
 
+
 const QuestionState = (props) => {
     const host = 'http://localhost:80';
     const [user_id, setUser] = useState("");
@@ -36,6 +37,8 @@ const QuestionState = (props) => {
 
     // add a question
 
+
+
     const addQuestion = async (username, user, title, body, tags) => {
         try {
             console.log("dsfnodsv");
@@ -57,10 +60,6 @@ const QuestionState = (props) => {
         catch (err) {
             console.log(err);
         }
-
-
-
-
     }
 
 
