@@ -576,3 +576,20 @@ a{
     width: 30%;
   }
 }
+@media(max-width: 490px){
+.tittleName{
+font-size: 20px;
+}
+.ghello{
+flex-wrap: wrap;
+}
+}
+
+.comments{
+  width: 92.7%;
+}
+.center{
+  display: flex;
+  justify-content: center;
+
+}
